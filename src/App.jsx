@@ -1,6 +1,6 @@
 // App.jsx
 import React from 'react';
-import ShipmentTracker from './ShipmentTracker.1';
+import ShipmentTracker from './ShipmentTracker';
 
 function App() {
   return (
