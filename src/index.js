@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Amplify from 'aws-amplify';
 import awsConfig from './aws-exports.js';
+import { listShipments } from './graphql/queries.js';
 
 Amplify.configure(awsConfig);
 
