@@ -11,13 +11,12 @@ export const ShipmentTracker = ({ shipmentId }) => {
             setShipmentStatus(data.status);
         };
 
-        // Subscribe to SNS for push notifications
-        const snsSubscription = ; // Add subscription code here;
+        // Call the function to fetch shipment status
+        fetchShipmentStatus();
 
-
-        // Cleanup subscriptions on component unmount
+        // Cleanup on component unmount (no need to unsubscribe from SNS)
         return () => {
-            snsSubscription.unsubscribe();
+            // Clean up any necessary resources
         };
     }, [shipmentId]);
 
