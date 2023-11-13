@@ -1,19 +1,36 @@
+// React component for displaying shipment details and real-time updates
 import React, { useState, useEffect } from 'react';
+import './ShipmentTracker.css'; // Import the CSS file
 
-function ShipmentTracker() {
-  const [status, setStatus] = useState('In Transit');
+const ShipmentTracker = ({ shipmentId }) => {
+  const [shipmentStatus, setShipmentStatus] = useState('');
 
   useEffect(() => {
-    // Use AWS for real-time shipment status updates
-    // Subscribe to relevant SNS topics for notifications
-  }, []);
+    // Fetch real-time shipment status from AWS Lambda endpoint
+    const fetchShipmentStatus = async () => {
+      const response = await fetch(`AWS_LAMBDA_ENDPOINT/${shipmentId}`);
+      const data = await response.json();
+      setShipmentStatus(data.status);
+    };
+
+    // Subscribe to SNS for push notifications
+    const snsSubscription = // Add subscription code here;
+
+    // Cleanup subscriptions on component unmount
+    return () => {
+      snsSubscription.unsubscribe();
+    };
+  }, [shipmentId]);
 
   return (
-    <div>
-      <h1>Shipment Status: {status}</h1>
-      {/* Display other shipment details */}
+    <div className="container">
+      <div className="box">
+        <h2>Shipment Status: {shipmentStatus}</h2>
+        {/* Additional shipment details and notifications */}
+      </div>
     </div>
   );
-}
+};
 
 export default ShipmentTracker;
+
